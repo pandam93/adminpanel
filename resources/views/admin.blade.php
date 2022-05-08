@@ -1,5 +1,7 @@
 @extends('adminlte::page')
 
+@section('plugins.SweetAlert2', true)
+
 @section('title', 'Dashboard')
 
 @section('content_header')
