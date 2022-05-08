@@ -18,5 +18,32 @@ Route::get('/', function () {
 });
 
 Route::get('/admin', function() {
-    return view('admin');
+    $users = \App\Models\User::get(['created_at']);
+
+    //$users = \App\Models\User::whereYear('created_at', '=', Carbon\Carbon::now()->year)->get(['created_at']);
+    $months = $users->map(function ($item, $key) {
+        return $item->created_at->month;
+    });
+
+    $monthGraph = [ 0 => 0,
+                    1 => 0,
+                    2 => 0,
+                    3 => 0,
+                    4 => 0,
+                    5 => 0,
+                    6 => 0,
+                    7 => 0,
+                    8 => 0,
+                    9 => 0,
+                    10 => 0,
+                    11 => 0 ];
+    
+    foreach($months->sort()->all() as $value) {
+        
+        $monthGraph[$value -1] += 1;
+    }
+
+    //dd($monthGraph, $months->sort()->all());
+    
+    return view('admin')->with('months', $monthGraph);
 });
