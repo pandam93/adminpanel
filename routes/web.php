@@ -36,3 +36,5 @@ Route::get('/admin', function() {
 
     return view('admin')->with('months', $data->toJson());
 });
+
+Route::view('/fullcalendar', 'calendar');
