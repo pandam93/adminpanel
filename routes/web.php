@@ -18,5 +18,21 @@ Route::get('/', function () {
 });
 
 Route::get('/admin', function() {
-    return view('admin');
+    $users = \App\Models\User::whereYear('created_at', '2021')->get();
+    
+    $dates = $users->pluck('created_at');
+    
+    $datesFormatted = $dates->map(function($date){
+        return $date->month -1;
+    });
+
+    $months = $datesFormatted->countBy()->sortKeys();
+
+    if($months->first() != 0) {
+        $data = $months->pad(-12, 0);
+    }
+
+    // dd($data->toJson());
+
+    return view('admin')->with('months', $data->toJson());
 });
