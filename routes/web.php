@@ -38,3 +38,7 @@ Route::get('/admin', function() {
 });
 
 Route::view('/fullcalendar', 'calendar');
+
+Route::post('/toast', function() {
+    return redirect()->back()->withInput()->with('status', 'Profile updated!');;
+})->name('toast');

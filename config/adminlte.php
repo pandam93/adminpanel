@@ -444,7 +444,22 @@ return [
                     'location' => '//cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.css',
                 ],
             ],
-        ]
+        ],
+        'toastr' => [
+            'active' => false,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '//cdn.jsdelivr.net/npm/toastr@2.1.4/toastr.min.js',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => false,
+                    'location' => '//cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.css'
+                ]
+            ],
+        ],
     ],
 
     /*

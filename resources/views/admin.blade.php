@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('plugins.Chartjs', true)
+@section('plugins.toastr', true)
 
 @section('title', 'Dashboard')
 
@@ -57,6 +57,40 @@
     <div class="mt-2 container-fluid">
       <div class="row">
         <div class="col-sm-6">
+          <!-- Main node for this component -->
+          <div class="timeline">
+            <!-- Timeline time label -->
+            <div class="time-label">
+              <span class="bg-green">23 Aug. 2019</span>
+            </div>
+            <div>
+            <!-- Before each timeline item corresponds to one icon on the left scale -->
+              <i class="fas fa-envelope bg-blue"></i>
+              <!-- Timeline item -->
+              <div class="timeline-item">
+              <!-- Time -->
+                <span class="time"><i class="fas fa-clock"></i> 12:05</span>
+                <!-- Header. Optional -->
+                <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
+                <!-- Body -->
+                <div class="timeline-body">
+                  Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
+                  weebly ning heekya handango imeem plugg dopplr jibjab, movity
+                  jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
+                  quora plaxo ideeli hulu weebly balihoo...
+                </div>
+                <!-- Placement of additional controls. Optional -->
+                <div class="timeline-footer">
+                  <a class="btn btn-primary btn-sm">Read more</a>
+                  <a class="btn btn-danger btn-sm">Delete</a>
+                </div>
+              </div>
+            </div>
+            <!-- The last icon means the story is complete -->
+            <div>
+              <i class="fas fa-clock bg-gray"></i>
+            </div>
+          </div>
           <div class="card">
             <div class="card-header">
               <h3 class="card-title">Default Card Example</h3>
@@ -69,7 +103,11 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              The body of the card
+              <form action="{{ route('toast') }}" method="POST">
+              @csrf
+              <input type="text" name="test" id="test" value="{{ old('test') }}">
+              <button class="btn btn-primary" type="submit">Test</button>
+              </form>
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
@@ -78,6 +116,12 @@
             <!-- /.card-footer -->
           </div>
           <!-- /.card -->
+          
+          <ul data-widget="todo-list" id="my-todo-list">
+            <li>Esto</li>
+            <li>Lo otro</li>
+            <li>Lo de más allá</li>
+           </ul>
           
         </div>
         <div class="col-sm-6">
@@ -100,63 +144,23 @@
 
 @section('js')
     <script>
+        @if(Session::has('status'))
+        toastr.options =
+        {
+          "closeButton" : true,
+          "progressBar" : true
+        }
+            toastr.success("{{ session('status') }}");
+        @endif
 
-const labels = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
-const data = {
-  labels: labels,
-  datasets: [{
-    label: 'Usuarios creados:',
-    data: {!! $months !!},
-    backgroundColor: [
-      'rgba(255, 99, 132, 0.2)',
-      'rgba(255, 159, 64, 0.2)',
-      'rgba(255, 205, 86, 0.2)',
-      'rgba(75, 192, 192, 0.2)',
-      'rgba(54, 162, 235, 0.2)',
-      'rgba(153, 102, 255, 0.2)',
-      'rgba(153, 102, 255, 0.2)',
-      'rgba(153, 102, 255, 0.2)',
-      'rgba(153, 102, 255, 0.2)',
-      'rgba(153, 102, 255, 0.2)',
-      'rgba(153, 102, 255, 0.2)',
-      'rgba(153, 102, 255, 0.2)',
-    ],
-    borderColor: [
-      'rgb(255, 99, 132)',
-      'rgb(255, 99, 132)',
-      'rgb(255, 99, 132)',
-      'rgb(255, 99, 132)',
-      'rgb(255, 99, 132)',
-      'rgb(255, 99, 132)',
-      'rgb(255, 159, 64)',
-      'rgb(255, 205, 86)',
-      'rgb(75, 192, 192)',
-      'rgb(54, 162, 235)',
-      'rgb(153, 102, 255)',
-      'rgb(75, 192, 192)',
-    ],
-    borderWidth: 1
-  }]
-};
-
-const config = {
-  type: 'bar',
-  data: data,
-  options: {
-    scales: {
-      yAxes: [{
-          display: true,
-          ticks: {
-              beginAtZero: true
+        $('#my-todo-list').TodoList({
+          onCheck: function(checkbox) {
+            // Do something when the checkbox is checked
+          },
+          onUnCheck: function(checkbox) {
+            // Do something after the checkbox has been unchecked
           }
-      }]
-    }
-  },
-};
+        })
 
-  const myChart = new Chart(
-    document.getElementById('myChart'),
-    config
-  );
     </script>
 @stop
