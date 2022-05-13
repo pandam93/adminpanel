@@ -53,11 +53,16 @@ Route::get('/admin', function() {
         $data = $months->pad(-12, 0);
     }
 
-    $notifications = auth()->user()->unreadNotifications;
+    if(auth()->check()) {
+        $notifications = auth()->user()->unreadNotifications;
+
+        return view('admin')->with('months', $data->toJson())->with(compact('notifications'));
+    }
+
+    return view('admin')->with('months', $data->toJson()); 
 
     // dd($notifications->count());
 
-    return view('admin')->with('months', $data->toJson())->with(compact('notifications'));
 });
 
 Route::get('/mark-as-read', function(){
