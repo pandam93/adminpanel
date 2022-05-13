@@ -18,6 +18,7 @@ Illuminate\Support\Facades\Auth::routes(['verify' => true]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('verified')->name('home');
 
 Route::get('/', function () {
+    //Illuminate\Support\Facades\Auth::user()->leaveImpersonation();
     return view('welcome');
 });
 
@@ -38,6 +39,8 @@ Route::get('/unsubscribe/{user}', function (Illuminate\Http\Request $request) {
  })->name('unsubscribe')->middleware('signed');
 
 Route::get('/admin', function() {
+
+    //Illuminate\Support\Facades\Auth::user()->impersonate(App\Models\User::find(2));
 
     $users = \App\Models\User::whereYear('created_at', '2022')->get();
     
@@ -66,9 +69,9 @@ Route::get('/admin', function() {
 });
 
 Route::get('/mark-as-read', function(){
-    //auth()->user()->unreadNotifications->markAsRead();
+    auth()->user()->unreadNotifications->markAsRead();
     //O tambien sin traerte las notificaciones de la bbdd
-    auth()->user()->unreadNotifications()->update(['read_at' => now()]);
+    //auth()->user()->unreadNotifications()->update(['read_at' => now()]);
 return back();
 })->name('markNotification');
 
@@ -78,4 +81,6 @@ Route::post('/toast', function() {
     return redirect()->back()->withInput()->with('status', 'Profile updated!');;
 })->name('toast');
 
+
+Route::impersonate();
 
