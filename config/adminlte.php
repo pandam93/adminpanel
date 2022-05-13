@@ -227,9 +227,24 @@ return [
     'menu' => [
         // Navbar items:
         [
-            'type'         => 'navbar-search',
-            'text'         => 'search',
-            'topnav_right' => true,
+            'type'         => 'navbar-notification', // The menu item type => REQUIRED
+            'id'           => 'my-notification', // An ID attribute => REQUIRED
+            'icon'         => 'fas fa-bell', // A font awesome icon => REQUIRED
+            'icon_color'   => 'warning', // The initial icon color => OPTIONAL
+            'label'        => 0, // The initial label for the badge => OPTIONAL
+            'label_color'  => 'danger', // The initial badge color => OPTIONAL
+            'url'          => 'notifications/show', // Url for the click event => REQUIRED
+            'topnav_right' => true, // Or "'topnav' => true" to place on the left => REQUIRED
+            'update_cfg' => [
+                'url' => 'notifications/get', // Url to use for fetch new data => OPTIONAL
+                'period' => 30, // The update period for get new data (in seconds) => OPTIONAL
+            ],
+        ],
+        [
+            'text'     => 'Important Link',
+            'url'      => 'important/link',
+            'icon'     => 'fas fa-fw fa-exclamation-triangle',
+            'classes'  => 'text-danger text-uppercase',
         ],
         [
             'type'         => 'fullscreen-widget',
