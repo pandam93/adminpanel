@@ -23,6 +23,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+        if(app('impersonate')->isImpersonating()){
+            dd(app('impersonate')->isImpersonating());
+        }
         return view('home');
     }
 }
