@@ -227,26 +227,6 @@ return [
     'menu' => [
         // Navbar items:
         [
-            'type'         => 'navbar-notification', // The menu item type => REQUIRED
-            'id'           => 'my-notification', // An ID attribute => REQUIRED
-            'icon'         => 'fas fa-bell', // A font awesome icon => REQUIRED
-            'icon_color'   => 'warning', // The initial icon color => OPTIONAL
-            'label'        => 0, // The initial label for the badge => OPTIONAL
-            'label_color'  => 'danger', // The initial badge color => OPTIONAL
-            'url'          => 'notifications/show', // Url for the click event => REQUIRED
-            'topnav_right' => true, // Or "'topnav' => true" to place on the left => REQUIRED
-            'update_cfg' => [
-                'url' => 'notifications/get', // Url to use for fetch new data => OPTIONAL
-                'period' => 30, // The update period for get new data (in seconds) => OPTIONAL
-            ],
-        ],
-        [
-            'text'     => 'Important Link',
-            'url'      => 'important/link',
-            'icon'     => 'fas fa-fw fa-exclamation-triangle',
-            'classes'  => 'text-danger text-uppercase',
-        ],
-        [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
         ],
@@ -425,18 +405,18 @@ return [
                 ],
             ],
         ],
-        'Pace' => [
+        'Summernote' => [
             'active' => false,
             'files' => [
                 [
                     'type' => 'css',
                     'asset' => false,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/blue/pace-theme-center-radar.min.css',
+                    'location' => '//cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css',
                 ],
                 [
                     'type' => 'js',
                     'asset' => false,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js',
+                    'location' => '//cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js',
                 ],
             ],
         ],

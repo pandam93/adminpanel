@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
         ]);
         
         \App\Models\User::factory(50)->create();
+        \App\Models\Task::factory(50)->create();
     }
 }

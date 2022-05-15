@@ -43,4 +43,12 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
         'created_at' => 'datetime:Y-m-d',
     ];
+
+     /**
+     * Get the tasks owned by the user.
+     */
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
 }
