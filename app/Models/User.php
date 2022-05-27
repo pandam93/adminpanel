@@ -44,11 +44,27 @@ class User extends Authenticatable implements MustVerifyEmail
         'created_at' => 'datetime:Y-m-d',
     ];
 
-     /**
-     * Get the tasks owned by the user.
+    /**
+     * Get all of the user's comments.
      */
-    public function tasks()
+    public function commentsReceived()
     {
-        return $this->hasMany(Task::class);
+        return $this->morphMany(Comment::class, 'commentable');
+    }
+
+    /**
+     * Get the comments done by the user.
+     */
+    public function commentsDone()
+    {
+        return $this->hasMany(Comment::class, 'author');
+    }
+
+    /**
+     * Get the posts done by the user.
+     */
+    public function posts()
+    {
+        return $this->hasMany(Post::class, 'author');
     }
 }
