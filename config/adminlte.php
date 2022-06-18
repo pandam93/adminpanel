@@ -313,6 +313,21 @@ return [
             'icon_color' => 'cyan',
             'url'        => '#',
         ],
+        [
+            'type'         => 'navbar-notification', // The menu item type => REQUIRED
+            'id'           => 'my-notification', // An ID attribute => REQUIRED
+            'icon'         => 'fas fa-bell', // A font awesome icon => REQUIRED
+            'icon_color'   => 'warning', // The initial icon color => OPTIONAL
+            'label'        => 0, // The initial label for the badge => OPTIONAL
+            'label_color'  => 'danger', // The initial badge color => OPTIONAL
+            'url'          => 'notifications/show', // Url for the click event => REQUIRED
+            'topnav_right' => true, // Or "'topnav' => true" to place on the left => REQUIRED
+                'dropdown_mode'   => true, // Enable dropdown mode.
+            'update_cfg' => [
+                'url' => 'notifications/get', // Url to use for fetch new data => OPTIONAL
+                'period' => 30, // The update period for get new data (in seconds) => OPTIONAL
+            ],
+        ],
     ],
 
     /*

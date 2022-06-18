@@ -36,3 +36,5 @@ function () {
 });
 
 Route::get('/gettasks',[App\Http\Controllers\TaskController::class, 'getTasks'])->name('getTasks'); 
+
+Route::get('notifications/get', [App\Http\Controllers\NotificationsController::class, 'getNotificationsData']);

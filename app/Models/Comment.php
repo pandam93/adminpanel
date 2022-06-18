@@ -11,13 +11,6 @@ class Comment extends Model
     
     protected $guarded = [];    
 
-    public static function boot() {
-        parent::boot();
-        static::creating(function($comment) {
-            $comment->author = auth()->check() ? auth()->id() : 1 ;
-        });
-    }
-
     /**
      * Get the parent commentable model (post or user or comment).
      */
@@ -39,6 +32,6 @@ class Comment extends Model
      */
     public function user()
     {
-        return $this->belongsTo(User::class, 'author');
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

@@ -15,11 +15,11 @@ class CreateCommentsTable extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('author');
+            $table->unsignedBigInteger('user_id');
             $table->string('title', '100')->nullable();
             $table->text('content');
             $table->boolean('published')->default(true);
-            $table->foreign('author')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->morphs('commentable');
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
